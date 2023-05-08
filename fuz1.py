@@ -1,7 +1,7 @@
 import requests
 from urllib.parse import urlparse
 from collections import defaultdict
-from bs4 import BeautifuSoup
+from bs4 import BeautifulSoup
 import re
 import time
 
@@ -12,7 +12,7 @@ url_import_tags={
 	'target':['a','area','base','form'],
 	'form': ['button','fieldset','input','label','meter','object','output','select','textarea']
 }
-file_extension ['png', 'mp4', 'css', 'svg', 'pdf', 'jpg']
+file_extension=['png', 'mp4', 'css', 'svg', 'pdf', 'jpg']
 
 class URL_Crawler(object):
 	def __init__(self, main_url, rate_limit):
@@ -25,7 +25,7 @@ class URL_Crawler(object):
 		self.dot='.'.join(self.main_processing.netloc.replace('www.','').split('.')[1:])
 		self.url_path=set()
 		self.url_pull_path_query=defaultdict(list)
-		self.unidentified_url= set([self.mail_url])
+		self.unidentified_url= set([self.main_url])
 		self.identified_url=list()
 		self.no_important_url=set()
 		self.error_url=list()
@@ -41,7 +41,7 @@ class URL_Crawler(object):
 			if attr_str == '/' or attr_str.startswith('#') or attr_str.startswith('_blank') or attr_str.startswith('_tml') \
 				or attr_str.startswith('javascript:') or attr_str.startswith('tel:') or attr_str_startswith('mailto') or attr_str.startswith \
 					or not attr_str:
-				return false
+				return False
 			parsing = urlparse(attr_str)
 			if parsing.scheme:
 				if self.domain in parsing.netloc.replace('www', ''):
@@ -74,7 +74,7 @@ class URL_Crawler(object):
 	def Rrl_Processing(self, url_sets):
 		for url in url_sets:
 			if '.' in url:
-				if url.split('.')[-1] in file_extention:
+				if url.split('.')[-1] in file_extension:
 					self.no_important_url=self.no_important_url.union([url])
 				else:
 					self.unidentified_url=self.unidentified_url.union([url])
