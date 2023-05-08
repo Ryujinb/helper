@@ -39,7 +39,7 @@ class URL_Crawler(object):
 	def Html_Processing(self, html, url):
 		def check_path(attr_str, url):
 			if attr_str == '/' or attr_str.startswith('#') or attr_str.startswith('_blank') or attr_str.startswith('_tml') \
-				or attr_str.startswith('javascript:') or attr_str.startswith('tel:') or attr_str_startswith('mailto') or attr_str.startswith \
+				or attr_str.startswith('javascript:') or attr_str.startswith('tel:') or attr_str.startswith('mailto') or attr_str.startswith \
 					or not attr_str:
 				return False
 			parsing = urlparse(attr_str)
